@@ -10,6 +10,7 @@
 }
 
 .row {
+  clear: both;
   width: 308px;
   margin: auto;
 }
