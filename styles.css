@@ -16,15 +16,16 @@
 }
 
 .top {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
 
 }
 
-.middle {
-  border: 1px solid black;
+.center {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 .bottom {
-  border: 1px solid black;
+  border-top: 1px solid black;
 
 }
