@@ -9,6 +9,10 @@
   width: 100px;
 }
 
+.row > div:hover {
+  cursor: pointer;
+}
+
 .row {
   clear: both;
   width: 308px;
