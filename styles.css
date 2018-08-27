@@ -1,0 +1,29 @@
+#board {
+  padding: 3em;
+  text-align: center;
+}
+
+.row > div {
+  float: left;
+  height: 100px;
+  width: 100px;
+}
+
+.row {
+  width: 308px;
+  margin: auto;
+}
+
+.top {
+  border: 1px solid black;
+
+}
+
+.middle {
+  border: 1px solid black;
+}
+
+.bottom {
+  border: 1px solid black;
+
+}
