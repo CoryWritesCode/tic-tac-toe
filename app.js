@@ -89,7 +89,6 @@ function checkForWinner() {
 };
 
 function itOver() {
-  reload++;
   if (gameOver === 2) {
     window.location.reload();
   };
