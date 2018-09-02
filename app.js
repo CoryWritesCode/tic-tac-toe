@@ -64,9 +64,8 @@ function checkForWinner() {
   let fSlash = (tLeft.textContent + mCenter.textContent + bRight.textContent);
   let bSlash = (tRight.textContent + mCenter.textContent + bLeft.textContent);
   var pWins = [tRow, mRow, bRow, lColumn, cColumn, rColumn, fSlash, bSlash];
-  var pDraw = boxes;
   pWins.forEach(function(possibleWins) {
-    if (gameOver === 1) {
+    if (gameOver == 1) {
       winnerIs.textContent += '';
       boxes.textContent =+ '';
       itOver();
@@ -81,15 +80,38 @@ function checkForWinner() {
       w = true;
     } else if (c == 8) {
       winnerIs.textContent += 'Looks like we have a draw!';
-      winnerIs.textContent += '';
-      boxes.textContent =+ '';
-      gameOver++
+      gameOver++;
+      c++;
     };
   });
 };
 
+// switch (possibleWins) {
+//   case possibleWins === 'XXX':
+//     winnerIs.textContent += 'And the winner is... X!';
+//     gameOver++;
+//     w = true;
+//     break;
+//   case possibleWins === 'OOO':
+//     winnerIs.textContent += 'And the winner is... O!';
+//     gameOver++;
+//     w = true;
+//     break;
+//   case gameOver == 1:
+//     winnerIs.textContent += '';
+//     boxes.textContent =+ '';
+//     itOver();
+//     gameOver++
+//     break;
+//   case c == 8 && w != true:
+//     winnerIs.textContent += 'Looks like we have a draw!';
+//     gameOver++;
+//     c++;
+//     break;
+// };
+
 function itOver() {
-  if (gameOver === 2) {
+  if (gameOver == 2) {
     window.location.reload();
   };
 };
