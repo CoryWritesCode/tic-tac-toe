@@ -15,6 +15,7 @@ let x = 0;
 let w = false;
 let gameOver = 0;
 let c = 0
+let reload = 0;
 
 function isEven(x) {
    return x % 2 == 0;
@@ -68,6 +69,8 @@ function checkForWinner() {
     if (gameOver === 1) {
       winnerIs.textContent += '';
       boxes.textContent =+ '';
+      itOver();
+      gameOver++
     } else if (possibleWins === 'XXX') {
       winnerIs.textContent += 'And the winner is... X!';
       gameOver++;
@@ -86,5 +89,8 @@ function checkForWinner() {
 };
 
 function itOver() {
-
-}
+  reload++;
+  if (gameOver === 2) {
+    window.location.reload();
+  };
+};
