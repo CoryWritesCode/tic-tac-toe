@@ -31,26 +31,26 @@ boxes.forEach(function(box) {
 anywhere.addEventListener('click', itOver, true);
 
 function boxClicked(box) {
-  if (c < 10) {
-    itOver()
+  // if (c < 11) {
+  //   itOver()
     if (w) {
       box.textContent += '';
     } else if (isEven(x)) {
       if (box.target.textContent != 'O') {
         x++;
+        c++;
         box.target.textContent = 'X';
         checkForWinner();
-        c++;
       }
     } else {
       if (box.target.textContent != 'X') {
         x++;
+        c++;
         box.target.textContent = 'O';
         checkForWinner();
-        c++;
       };
     };
-  };
+  // };
 };
 
 
@@ -75,31 +75,25 @@ function checkForWinner() {
       winnerIs.textContent += 'And the winner is... X!';
       gameOver++;
       w++;
-      console.log(pWins);
       return true;
     } else if (pWins[i] === 'OOO') {
       winnerIs.textContent += 'And the winner is... O!';
       gameOver++;
       w++;
-      console.log(pWins);
       return true;
     };
-     if (c == 8 && w !== true) {
-      gameOver++;
-      c++;
-    };
+  };
+   if (c == 9 && w !== true) {
+    winnerIs.textContent += 'Looks like we have a draw!';
+    gameOver = 3;
+    c++;
   };
 };
 
 function itOver() {
   if (gameOver === 1) {
     window.location.reload();
-  } else if (gameOver === 2 && c < x && w > 0) {
-    winnerIs.textContent += 'Looks like we have a draw!';
-    gameOver++;
-    return true;
-  };
-  if (gameOver === 3) {
+  } else if (gameOver === 3) {
     window.location.reload();
   };
 };
