@@ -1,4 +1,4 @@
-let boxes = document.querySelectorAll('.left, .right, .center');
+let boxes = document.querySelectorAll('.box');
 let tLeft = document.getElementById('top-left');
 let tCenter = document.getElementById('top-center');
 let tRight = document.getElementById('top-right');
@@ -12,10 +12,9 @@ let winnerIs = document.getElementById("winnerCircle");
 let anywhere = document.getElementById('board');
 
 let x = 0;
-let w = false;
+let w = 0;
 let gameOver = 0;
-let c = 0
-let reload = 0;
+let c = 0;
 
 function isEven(x) {
    return x % 2 == 0;
@@ -32,7 +31,8 @@ boxes.forEach(function(box) {
 anywhere.addEventListener('click', itOver, true);
 
 function boxClicked(box) {
-  if (c < 9) {
+  if (c < 10) {
+    itOver()
     if (w) {
       box.textContent += '';
     } else if (isEven(x)) {
@@ -48,7 +48,7 @@ function boxClicked(box) {
         box.target.textContent = 'O';
         checkForWinner();
         c++;
-      }
+      };
     };
   };
 };
@@ -64,54 +64,42 @@ function checkForWinner() {
   let fSlash = (tLeft.textContent + mCenter.textContent + bRight.textContent);
   let bSlash = (tRight.textContent + mCenter.textContent + bLeft.textContent);
   var pWins = [tRow, mRow, bRow, lColumn, cColumn, rColumn, fSlash, bSlash];
-  pWins.forEach(function(possibleWins) {
+  for (var i = 0; i < pWins.length; i++) {
+  // pWins.forEach(function(possibleWins) {
     if (gameOver == 1) {
       winnerIs.textContent += '';
       boxes.textContent =+ '';
       itOver();
-      gameOver++
-    } else if (possibleWins === 'XXX') {
+      gameOver++;
+    } else if (pWins[i] === 'XXX') {
       winnerIs.textContent += 'And the winner is... X!';
       gameOver++;
-      w = true;
-    } else if (possibleWins === 'OOO') {
+      w++;
+      console.log(pWins);
+      return true;
+    } else if (pWins[i] === 'OOO') {
       winnerIs.textContent += 'And the winner is... O!';
       gameOver++;
-      w = true;
-    } else if (c == 8) {
-      winnerIs.textContent += 'Looks like we have a draw!';
+      w++;
+      console.log(pWins);
+      return true;
+    };
+     if (c == 8 && w !== true) {
       gameOver++;
       c++;
     };
-  });
+  };
 };
 
-// switch (possibleWins) {
-//   case possibleWins === 'XXX':
-//     winnerIs.textContent += 'And the winner is... X!';
-//     gameOver++;
-//     w = true;
-//     break;
-//   case possibleWins === 'OOO':
-//     winnerIs.textContent += 'And the winner is... O!';
-//     gameOver++;
-//     w = true;
-//     break;
-//   case gameOver == 1:
-//     winnerIs.textContent += '';
-//     boxes.textContent =+ '';
-//     itOver();
-//     gameOver++
-//     break;
-//   case c == 8 && w != true:
-//     winnerIs.textContent += 'Looks like we have a draw!';
-//     gameOver++;
-//     c++;
-//     break;
-// };
-
 function itOver() {
-  if (gameOver == 2) {
+  if (gameOver === 1) {
+    window.location.reload();
+  } else if (gameOver === 2 && c < x && w > 0) {
+    winnerIs.textContent += 'Looks like we have a draw!';
+    gameOver++;
+    return true;
+  };
+  if (gameOver === 3) {
     window.location.reload();
   };
 };
